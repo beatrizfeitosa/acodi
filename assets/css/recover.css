@@ -1,0 +1,20 @@
+.buttons {
+	display: flex;
+	flex-direction: column;
+}
+
+.button {
+	outline: none;
+	padding: 13px;
+	background-color: gray;
+	color: white;
+	font-size: 16px;
+	border: 2px solid gray;
+	border-radius: 10px;
+}
+
+.button:hover {
+	color: gray;
+	background-color: lightgray;
+	border: 2px solid lightgray;
+}  

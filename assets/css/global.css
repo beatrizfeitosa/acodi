@@ -1,0 +1,179 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+}
+
+footer {
+	padding: 30px;
+}
+
+.error {
+    color: red;
+    display: none;
+    font-family: 'Nunito';
+}
+
+/*menu*/
+nav img {
+	width: 60px;
+}
+
+nav {
+	padding: 30px;
+	color: white;
+}
+
+.register {
+	background-color: white;
+   	color: darkviolet;
+   	padding: 8px;
+   	padding-left: 20px;
+	padding-right: 20px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.register:hover {
+	background-color: indigo;
+	border-radius: 10px;
+	color: white;
+}
+
+.nav li {
+	margin: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.active {
+	border-radius: 10px;
+	background-color: indigo;
+	color:white;
+}
+
+.nav li:hover {
+	border-radius: 10px;
+	background-color: indigo;
+	color:white;
+}
+
+/*modal*/
+.form-control {
+	font-family: 'Nunito';
+}
+
+.form-select {
+	font-family: 'Nunito';
+}
+
+/*consultas*/
+.queries {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 2vh;
+	margin-bottom: 2.5vh;
+}
+
+.subtitle {
+	color: gray; 
+	margin: 0;
+	margin-right: 20px;
+	text-decoration: none;
+}
+
+#save-pdf:hover {
+	background-color: white;
+	color: darkviolet;
+}
+
+/*cards*/
+ol {
+	list-style-type: none;
+}
+
+ol ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px;
+	margin-left: 50px;
+	width: 100%;
+}
+
+/*cards*/
+ol li {
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 1.5vh;
+	border-radius: 5px;
+	background-color: white;
+	outline: none !important;
+    border: 1px solid lavender;
+    background-color: white;
+}
+
+ol li p {
+	margin: 0;
+}
+
+span {
+	font-family: 'Nunito';
+}
+
+.action {
+	background-color: ghostwhite;
+	border-radius: 50px;
+	width: 40px;
+	height: 40px;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 5px;
+}
+
+.action:hover {
+	background-color: lavender;
+}
+
+.action img {
+	max-height: 18px;
+	margin: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+.search-content {
+	background-color: white;
+	margin-bottom: 10px;
+	padding: 15px;
+}
+
+.search-box {
+	height: 40px;
+	width: 35%;
+	padding: 15px;
+	border-radius: 50px;
+	background-color: ghostwhite;
+	border: 1px solid lavender;
+}
+
+.search-txt {
+	font-family: Nunito;
+	border: none;
+	background: none;
+	outline: none;
+	width: 100%;
+	padding: 0;
+}
+
+#cards {
+	padding: 0;
+}

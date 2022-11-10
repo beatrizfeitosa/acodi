@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Acodi</title>
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+  </head>
+    
+  <nav style="background-color: darkviolet;" class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
+      <a class="d-flex align-items-center col-md-3 mb-2 mb-md-0">
+        <img src="../assets/images/logo_home.png"/>
+      </a>
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="home.html" class="nav-link px-2 link-light"><b>Home</a></li>
+        <li class="active"><a href="#" class="nav-link px-2 link-light">Agenda</b></a></li>
+      </ul>
+      <div class="col-md-3 d-flex align-items-center justify-content-md-between">
+          <button type="button" class="register" data-bs-toggle="modal" data-bs-target="#modalRegister" onclick="registerModal()">+ nova reunião</button>
+          <a class="link-light text-decoration-none" type="button" onclick="logout()">Sair</a>
+      </div>
+  </nav>
+
+  <body style="background-color: ghostwhite;">
+    <!--barra de pesquisa-->
+    <div class="search-content">
+      <div class="container d-flex justify-content-md-between align-items-center">
+        <h5 class="subtitle">Reuniões</h5>
+        <div class="search-box d-flex align-items-center">
+          <input type="text" class="search-txt" placeholder="Pesquisar">
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!--filtro de pesquisa-->
+      <div class="queries">
+        <button id="save-pdf" type="button" class="register" style="border: 1px solid lavender; font-size: 14px;">PDF</font><img src="../assets/images/down.svg" style="width: 20px; margin-left: 8px; color: darkviolet;"></button>
+        <div class="dropdown">
+          <a type="submit" id="filter" class="subtitle removeFilter" onclick="removeSelect()"></a>
+          <button class="register dropdown-toggle" type="button" data-bs-toggle="dropdown" style="border: 1px solid lavender;" aria-expanded="false">
+            <b>filtrar</b>
+          </button>
+          <ul id="select-data" class="dropdown-menu">
+            <li><a class="dropdown-item" onclick="">Hoje</a></li>
+            <li><a class="dropdown-item" onclick="">Pendentes</a></li>
+            <li><a class="dropdown-item" onclick="">Concluídas</a></li>
+          </ul>      
+        </div>   
+      </div>
+      <!--card-->
+      <ol id="cards" class="meetings">
+      </ol>     
+      <div id="pdf-content" style="display: none;">
+      </div>   
+    </div>
+
+    <!--modal cadastro-->
+    <div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="modalRegister" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-title">Nova reunião</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="studentName" class="col-form-label">Nome do aluno *</label>
+                <div class="error" id="name-required-error">Nome obrigatório</div>
+                <input type="text" class="form-control" id="student-name" onchange="onChangeName()">
+              </div>
+
+              <div class="d-flex justify-content-md-between">        
+                <div class="mb-3">
+                  <label for="date" class="col-form-label">Data da reunião *</label>
+                  <div class="error" id="date-required-error">Data obrigatória</div>
+                  <input type="date" class="form-control" id="date" onchange="onChangeDate()">
+                </div>
+                <div class="mb-3">
+                  <label for="time" class="col-form-label">Hora da reunião *</label>
+                  <input type="time" class="form-control" id="time">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="guardianStudent" class="col-form-label">Responsável do aluno *</label>
+                <input type="text" class="form-control" id="guardian-student">
+              </div>             
+              <div class="mb-3">
+                <label for="phoneGuardian" class="col-form-label">Celular do responsável</label>
+                <input type="text" class="form-control phone" id="guardian-phone"/>
+              </div>
+              <div class="d-flex justify-content-md-between">    
+                <div class="mb-3">
+                  <label for="grade" class="col-form-label">Série</label>
+                  <select class="form-select" id="grade" aria-label="Default select example">
+                    <option value="1º" selected>1º</option>
+                    <option value="2º">2º</option>
+                    <option value="3º">3º</option>
+                  </select>
+                </div>     
+                <div class="mb-3">
+                  <label for="course" class="col-form-label">Curso do aluno</label>
+                  <select class="form-select" id="course" aria-label="Default select example">
+                    <option value="Desenvolvimento de Sistemas" selected>Desenvolvimento de Sistemas</option>
+                    <option value="Serviços Jurídicos">Serviços Jurídicos</option>
+                    <option value="Administração">Administração</option>
+                    <option value="Mecânica">Mecânica</option>
+                    <option value="Nutrição">Nutrição</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Assunto</label>
+                <textarea class="form-control" id="subject"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div class="cadastrar">
+              <button id="saveButton" type="button"  class="btn" style="background-color: darkviolet;"><font color="white">  Salvar</font></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--modal view-->
+    <div class="modal fade" id="modalView" tabindex="-1" aria-labelledby="modalView" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Reunião</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p><label>Nome do aluno:</label><span id="student-name-view"> </span>
+            <p><label>Responsável:</label><span id="guardian-student-view"> </span>
+            <p><label>Celular do responsável:</label><span id="guardian-phone-view"> </span>
+            <p><label>Série:</label><span id="grade-course-view"> </span>
+            <p><label>Assunto:</label><span id="subject-view"> </span>
+            <p><label>Data da reunião:</label><span id="date-view"> </span>
+            <p><label>Hora da reunião:</label><span id="time-view"> </span>
+          </div>
+          <div class="modal-footer">
+            <a id="whatsapp" target="_blank" rel="noopener noreferrer" class="btn" style="display: none; background-color: #34af23; color: white;">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--modal ask remove register-->
+    <div class="modal fade" id="askRemoveRegister" tabindex="-1" aria-labelledby="askRemoveRegister" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar exclusão</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Deseja excluir essa reunião?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+            <button type="button" class="btn" id="yesRemoveCard" style="background-color: darkviolet;"><font color="white"> Sim</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+    
+  <footer>
+  </footer>
+
+  <!--fontes-->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+
+  <!--css-->
+  <link rel="stylesheet" href="../assets/css/agenda.css">
+  <link rel="stylesheet" href="../assets/css/global.css">
+
+  <!--bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+  <!--firebase-->
+  <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore-compat.js"></script>
+
+  <!--js-->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+  <script src="../assets/js/loading.js"></script>
+  <script src="../assets/js/firebase-init.js"></script>
+  <script src="../assets/js/global.js"></script>
+  <script src="../assets/js/agenda.js"></script>
+  <script src="../assets/js/services/meeting.service.js"></script>
+  <script src="../assets/js/auth-guard.js"></script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Redefinir Acodi</title>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="content first-content">
+                <img src="../assets/images/logo.png"/>
+            </div>
+            <div class="content second-content">
+                <div class="sub-second-content">
+                    <div>
+                        <h1>Redefinir senha</h1>
+                        <p class="margin subtitulo">Digite seu e-mail para redefinir a senha.</p>
+                    
+                        <form>
+                            <label class="subtitulo">Email</label>
+                            <div class="error" id="email-required-error">Email obrigatório</div>
+                            <div class="error" id="email-invalid-error">Email inválido</div>
+                            <input class="margin" type="email" name="email" id="email" onchange="onChangeEmail()" placeholder="seu@email.com"/>                            
+                            <button class="margin" type="button" id="recover-password-button" onclick="recoverPassword()">Redefinir</button>
+                        </form>
+
+                        <hr class="margin">
+
+                        <div class="buttons">
+                            <button class="margin button" type="button" onclick="login()">Login</button>
+                            <button class="margin button" type="button" onclick="register()">Cadastro</button>
+                        </div>
+                    </div>  
+                </div> 
+            </div>
+        </div>
+    </body>
+
+    <!--css-->
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <link rel="stylesheet" href="../assets/css/recover.css">
+    
+    <!--firebase-->
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth-compat.js"></script>
+    
+    <!--js-->
+    <script src="../assets/js/loading.js"></script>
+    <script src="../assets/js/validations.js"></script>
+    <script src="../assets/js/firebase-init.js"></script>
+    <script src="../assets/js/recover.js"></script>
+</html>

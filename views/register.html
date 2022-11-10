@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cadastrar Acodi</title>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="content first-content">
+                <img src="../assets/images/logo.png"/>
+            </div>
+            <div class="content second-content">
+                <div class="sub-second-content">
+                    <div>
+                        <h1>Cadastrar</h1>
+                        <p class="margin subtitulo">Bem vindo! Cadastre-se com seu e-mail e senha.</p>
+                    
+                        <form>
+                            <label class="subtitulo">Email</label>
+                            <div class="error" id="email-required-error">Email obrigatório</div>
+                            <div class="error" id="email-invalid-error">Email inválido</div>
+                            <input class="margin" type="email" name="email" id="email" onchange="onChangeEmail()" placeholder="seu@email.com"/>
+                           
+                            <label class="subtitulo">Senha</label>
+                            <div class="error" id="password-required-error">Senha obrigatória</div>
+                            <div class="error" id="password-min-length-error">A senha deve ter pelo menos 6 caracteres</div>  
+                            <input class="margin" type="password" name="password" id="password" onchange="onChangePassword()" placeholder="digite sua senha"/>   
+                            <label class="subtitulo">Confirmar senha</label>
+                            <div class="error" id="password-doesnt-match-error">Senha e confirmar senha devem ser iguais</div>     
+                            <input class="margin" type="password" name="password" id="confirmPassword" onchange="onChangeConfirmPassword()" placeholder="digite sua senha novamente"/>
+                            <button class="margin" type="button" id="register-button" onclick="register()">Registrar</button>
+                            <p class="subtitulo">Já tem uma conta? <a type="button" class="label" id="login-button" onclick="login()">Login</a></p>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </body>
+
+    <!--css-->
+    <link rel="stylesheet" href="../assets/css/auth.css">
+
+    <!--firebase-->
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth-compat.js"></script>
+
+    <!--js-->
+    <script src="../assets/js/loading.js"></script>
+    <script src="../assets/js/validations.js"></script>
+    <script src="../assets/js/firebase-init.js"></script> 
+    <script src="../assets/js/register.js"></script>
+</html>

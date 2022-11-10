@@ -1,0 +1,7 @@
+#select-courses a:hover {
+	background-color: lavender;
+}
+
+.removeFilter:hover {
+	color:  indigo;
+}
