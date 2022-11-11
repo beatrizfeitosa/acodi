@@ -1,6 +1,6 @@
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-        window.location.href = "home.html";
+        window.location.href = "views/home.html";
     }
 }) //impede o usuário logado de acessar a tela de cadastro sem deslogar
 
@@ -31,7 +31,7 @@ function login() {
         form.email().value, form.password().value
             ).then(response => {
                 //showLoading();
-                window.location.href = "home.html"; //se o usuário for encontrado, abrir o home
+                window.location.href = "views/home.html"; //se o usuário for encontrado, abrir o home
             }).catch(error => {
                 alert(getErrorMessage(error));
         }); 

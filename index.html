@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login Acodi</title>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/auth.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="content first-content">
+                <img src="assets/images/logo.png"/>
+            </div>
+            <div class="content second-content">
+                <div class="sub-second-content">
+                    <div>
+                        <h1>Login</h1>
+                        <p class="margin subtitulo">Bem vindo de volta! Por favor faça o login para acessar sua conta.</p>
+                    
+                        <form>
+                            <label class="subtitulo">Email</label>
+                            <div class="error" id="email-required-error">Email obrigatório</div>
+                            <div class="error" id="email-invalid-error">Email inválido</div>
+                            <input class="margin" type="email" name="email" id="email" onchange="onChangeEmail()" placeholder="seu@email.com"/>
+                           
+                            <label class="subtitulo">Senha</label>
+                            <div class="error" id="password-required-error">Senha obrigatória</div>
+                            <input type="password" name="password" id="password" style="margin-bottom: 1vh" onchange="onChangePassword()" placeholder="digite sua senha"/>
+
+                            <div class="margin" style="display: flex; justify-content: flex-end;">
+                                <a type="button" onclick="recoverPassword()">Esqueceu a senha?</a>
+                            </div>
+                          
+                            <button class="margin" type="button" id="login-button" onclick="login()">Entrar</button>
+                            <p class="margin subtitulo">Novo por aqui? <a type="button" class="label" onclick="register()">Cadastrar</a></p>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </body>
+
+    <!--firebase-->
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth-compat.js"></script>
+
+    <!--js-->
+    <script src="assets/js/validations.js"></script>
+    <script src="assets/js/firebase-init.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/loading.js"></script>
+</html>
