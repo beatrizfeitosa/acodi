@@ -60,11 +60,11 @@ function isEmailValid() {
 }
 
 function register() {
-    window.location.href = "register.html";
+    window.location.href = "views/register.html";
 }
 
 function recoverPassword() {
-    window.location.href = "recover.html";
+    window.location.href = "views/recover.html";
 }
 
 const form = {
