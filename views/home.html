@@ -18,24 +18,23 @@
 
     <!--css-->
     <link rel="stylesheet" href="../assets/css/global.css">
-  	<link rel="stylesheet" href="../assets/css/home.css">
   </head>
 
   <nav style="background-color: darkviolet;" class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
     <a class="d-flex align-items-center col-md-3 mb-2 mb-md-0">
-     <img src="../assets/images/logo_home.png"/>
-   </a>
+      <img src="../assets/images/logo_home.png"/>
+    </a>
 
-   <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
       <li class="active"><a class="nav-link px-2 link-light"><b>Home</a></li>
       <li><a href="agenda.html" class="nav-link px-2 link-light">Agenda</b></a></li>
-     </ul>
+    </ul>
 
      <div class="col-md-3 d-flex align-items-center justify-content-md-between">
        <button type="button" class="register" data-bs-toggle="modal" data-bs-target="#modalRegister" onclick="registerModal()">+ novo cadastro</button>
        <a class="link-light text-decoration-none" style="margin-right: 15px;" type="button" onclick="logout()">Sair</a>
-     </div>
-   </nav>    
+    </div>
+  </nav>    
 
   <body style="background-color: ghostwhite;">
     <!--barra de pesquisa-->
@@ -81,12 +80,12 @@
       <ol id="cards" class="contacts">
       </ol> 
 
-      <div id="pdf-content" style="display: none;">
+      <div id="pdf-content" class="hidden">
       </div>            
     </div>
 
     <!--modal register-->
-    <div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="modalRegister" aria-hidden="true" style="display: none;">
+    <div class="modal fade hidden" id="modalRegister" tabindex="-1" aria-labelledby="modalRegister" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
@@ -170,7 +169,7 @@
     </div>
 
     <!--modal view-->
-    <div class="modal fade" id="modalView" tabindex="-1" aria-labelledby="modalView" aria-hidden="true" style="display: none;">
+    <div class="modal fade hidden" id="modalView" tabindex="-1" aria-labelledby="modalView" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
@@ -197,7 +196,7 @@
     </div>
 
     <!--modal ask remove register-->
-    <div class="modal fade" id="askRemoveRegister" tabindex="-1" aria-labelledby="askRemoveRegister" aria-hidden="true" style="display: none;">
+    <div class="modal fade hidden" id="askRemoveRegister" tabindex="-1" aria-labelledby="askRemoveRegister" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -229,7 +228,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="../assets/js/loading.js"></script>
   <script src="../assets/js/firebase-init.js"></script>
   <script src="../assets/js/global.js"></script>
   <script src="../assets/js/home.js"></script>

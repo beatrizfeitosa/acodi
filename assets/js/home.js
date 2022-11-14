@@ -58,22 +58,19 @@ function logout() {
 }
 
 function findRegisters(user) {
-	//showLoading();
 	const doc = new jsPDF()
 
 	contactService.findByUser(user)
 		.then(contacts => {
-			//hideLoading();
 			addContactsToScreen(contacts);
 		})
 		.catch(error => {
-			//hideLoading();
 			console.log(error);
 			alert("Erro ao recuperar contatos");
 		})
 	form.savePdf().addEventListener('click', () => {
 		doc.fromHTML(form.pdfContent(), 25, 20)
-		doc.output("dataurlnewwindow")
+		doc.save("acodi-contatos.pdf")
 	})
 }
 
@@ -109,7 +106,6 @@ function addContactsToScreen(contacts) {
 
 function createCard(register) {
 	qtdRegister += 1;
-	const orderedList = document.getElementById('cards');
 	const li = createContactListItem(register);
 	li.setAttribute('class', 'd-flex align-items-center');
 	li.appendChild(createParagraph(register.date.split('-').reverse().join('/')));
@@ -124,7 +120,7 @@ function createCard(register) {
 	ul.appendChild(info);
 	ul.appendChild(div);
 	li.appendChild(ul);
-	orderedList.appendChild(li);
+	form.orderedList().appendChild(li);
 }
 
 function createContactListItem(register) {
@@ -188,10 +184,8 @@ function createUpdateModal(register) {
 }
 
 function removeRegister(register) {
-	//showLoading();
 	contactService.remove(register)
 	.then(() => {
-		//hideLoading();
 		document.getElementById(register.uid).remove();
 		window.location.href = "home.html";
 	})
@@ -199,20 +193,16 @@ function removeRegister(register) {
 
 function updateContact() {
 	const register = createContact();
-	//showLoading();
     contactService.update(register)
     .then(() => {
-        //hideLoading();
         window.location.href = "home.html";
     })
    .catch(() => {
-        //hideLoading();
         alert('Erro ao atualizar contato');
     });
 }
 
 function saveContact() {
-	//showLoading();
 	if (form.studentName().value == "" || form.date().value == "") {
         alert("Preencha os campos obrigatórios");
     } else {
@@ -220,11 +210,9 @@ function saveContact() {
 
     	contactService.save(register)
    		.then(() => {
-   			//hideLoading();
    			window.location.href = "home.html";
    		})
    		.catch(() => {
-   			//hideLoading();
    			alert("Erro ao cadastrar contato");
    		})
     }

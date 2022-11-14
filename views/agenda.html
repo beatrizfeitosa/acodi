@@ -17,7 +17,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     
     <!--css-->
-    <link rel="stylesheet" href="../assets/css/agenda.css">
     <link rel="stylesheet" href="../assets/css/global.css">
   </head>
     
@@ -56,21 +55,21 @@
             <b>filtrar</b>
           </button>
           <ul id="select-data" class="dropdown-menu">
-            <li><a class="dropdown-item" onclick="">Hoje</a></li>
-            <li><a class="dropdown-item" onclick="">Pendentes</a></li>
-            <li><a class="dropdown-item" onclick="">Concluídas</a></li>
+            <li><a class="dropdown-item" onclick="selectPeriod()">Hoje</a></li>
+            <li><a class="dropdown-item" onclick="selectPeriod()">Pendentes</a></li>
+            <li><a class="dropdown-item" onclick="selectPeriod()">Concluídas</a></li>
           </ul>      
         </div>   
       </div>
       <!--card-->
       <ol id="cards" class="meetings">
       </ol>     
-      <div id="pdf-content" style="display: none;">
+      <div id="pdf-content" class="hidden">
       </div>   
     </div>
 
     <!--modal cadastro-->
-    <div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="modalRegister" aria-hidden="true" style="display: none;">
+    <div class="modal fade hidden" id="modalRegister" tabindex="-1" aria-labelledby="modalRegister" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
@@ -140,7 +139,7 @@
     </div>
 
     <!--modal view-->
-    <div class="modal fade" id="modalView" tabindex="-1" aria-labelledby="modalView" aria-hidden="true" style="display: none;">
+    <div class="modal fade hidden" id="modalView" tabindex="-1" aria-labelledby="modalView" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
@@ -164,7 +163,7 @@
     </div>
 
     <!--modal ask remove register-->
-    <div class="modal fade" id="askRemoveRegister" tabindex="-1" aria-labelledby="askRemoveRegister" aria-hidden="true" style="display: none;">
+    <div class="modal fade hidden" id="askRemoveRegister" tabindex="-1" aria-labelledby="askRemoveRegister" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -195,7 +194,6 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
-  <script src="../assets/js/loading.js"></script>
   <script src="../assets/js/firebase-init.js"></script>
   <script src="../assets/js/global.js"></script>
   <script src="../assets/js/agenda.js"></script>

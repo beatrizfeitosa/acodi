@@ -1,3 +1,49 @@
+function selectPeriod() {
+	selected = document.getElementById("select-data");
+	selected.addEventListener("click", function(event) {
+		window.location.href = "agenda.html?period=" + event.target.text
+	})	
+}
+
+function removeSelect() {
+	window.location.href = "agenda.html";
+}
+
+function filterPeriod(register, period) {
+	var arrayData = register.date.split('-');
+    var campoDia = parseInt(arrayData[2]); 
+    var campoMes = parseInt(arrayData[1]); 
+    var campAno = parseInt(arrayData[0]);
+
+    var dateCheck = new Date(); //verificar se está dentro ou fora do período
+    dateCheck.setDate(campoDia);
+    dateCheck.setMonth(campoMes -1);
+    dateCheck.setFullYear(campAno);
+
+    var inicialDate = new Date(); //data inicial
+
+	var today = new Date(); //data final
+	today.setDate(today.getDate());
+
+    if (period == "Hoje") {
+		inicialDate.setDate(inicialDate.getDate());
+		if (dateCheck.getTime() == today.getTime()) {
+			createCard(register);
+		}
+    } else
+    if (period == "Pendentes") {
+		inicialDate.setDate(inicialDate.getDate() + 1);
+		if (dateCheck.getTime() > today.getTime()) {
+			createCard(register);
+		}
+    } else {
+		inicialDate.setDate(inicialDate.getDate() - 1);
+		if (dateCheck.getTime() < today.getTime()) {
+			createCard(register);
+		}
+    }	
+}
+
 function logout() {
 	firebase.auth().signOut().then(() => {
 		window.location.href = "../index.html";
@@ -7,22 +53,19 @@ function logout() {
 }
 
 function findRegisters(user) {
-	//showLoading();
 	const doc = new jsPDF()
 
 	meetingService.findByUser(user)
 		.then(meetings => {
-			//hideLoading();
 			addMeetingsToScreen(meetings);
 		})
 		.catch(error => {
-			//hideLoading();
 			console.log(error);
 			alert("Erro ao recuperar reuniões");
 		})
 	form.savePdf().addEventListener('click', () => {
 		doc.fromHTML(form.pdfContent(), 25, 20)
-		doc.output("dataurlnewwindow")
+		doc.save("acodi-agenda.pdf")
 	})
 }
 
@@ -32,11 +75,31 @@ var html = ""
 
 function addMeetingsToScreen(meetings) { 
 	var today = new Date();
-
-	const orderedList = document.getElementById('cards');
+	
 	meetings.forEach(register => {
+		const currentUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+		const urlParams = new URLSearchParams(window.location.search);
+
 		qtdRegister += 1;
-		const li = createMeetingListItem(register);
+
+		if (currentUrl == window.location.href) { //filtra os contatos
+			createCard(register);
+		} else {
+			const removeFilter = document.getElementById('filter').innerHTML = "Remover filtro";
+			if (urlParams.get('period')) {
+				filterPeriod(register, urlParams.get('period'));
+			} 
+		}
+	});
+
+	$(form.pdfContent()).append("<div class='d-flex'><h1 style='color: darkviolet;'>AcoDi</h1>" +
+			"<text>Data de emissão: " + today.toLocaleDateString("pt-BR") + "</text>" +
+			"<text>Total de registros: " + qtdRegister + "</text></div>" +
+			"<br><br><br><br><h5 style='color: gray; margin: 0;'>Reuniões</h5>" + html);
+}
+
+function createCard(register) {
+	const li = createMeetingListItem(register);
 		li.setAttribute('class', 'd-flex align-items-center');
 		//criação dos cards
 		const time = document.createElement('div');
@@ -55,13 +118,7 @@ function addMeetingsToScreen(meetings) {
 		ul.appendChild(info);
 		ul.appendChild(div);
 		li.appendChild(ul);
-		orderedList.appendChild(li);
-	});
-
-	$(form.pdfContent()).append("<div class='d-flex'><h1 style='color: darkviolet;'>AcoDi</h1>" +
-			"<text>Data de emissão: " + today.toLocaleDateString("pt-BR") + "</text>" +
-			"<text>Total de registros: " + qtdRegister + "</text></div>" +
-			"<br><br><br><br><h5 style='color: gray; margin: 0;'>Reuniões</h5>" + html);
+		form.orderedList().appendChild(li);
 }
 
 function createMeetingListItem(register) {
@@ -115,10 +172,8 @@ function createUpdateModal(register) {
 }
 
 function removeRegister(register) {
-	//showLoading();
 	meetingService.remove(register)
 	.then(() => {
-		//hideLoading();
 		document.getElementById(register.uid).remove();
 		window.location.href = "agenda.html";
 	})
@@ -129,21 +184,17 @@ function updateMeeting() {
         alert("Preencha os campos obrigatórios");
     } else {
 		const register = createMeeting();
-		//showLoading();
 		meetingService.update(register)
 		.then(() => {
-			//hideLoading();
 			window.location.href = "agenda.html";
 		})
 		.catch(() => {
-			//hideLoading();
 			alert('Erro ao atualizar reunião');
 		});
 	}
 }
 
 function saveMeeting() {
-	//showLoading();
 	if (form.studentName().value == "" || form.date().value == "" || form.time().value == "" || form.guardianStudent().value == "") {
         alert("Preencha os campos obrigatórios");
     } else {
@@ -151,11 +202,9 @@ function saveMeeting() {
 
     	meetingService.save(register)
    		.then(() => {
-   			//hideLoading();
    			window.location.href = "agenda.html";
    		})
    		.catch(() => {
-   			//hideLoading();
    			alert("Erro ao cadastrar reunião");
    		})
     }

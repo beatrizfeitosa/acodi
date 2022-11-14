@@ -4,16 +4,6 @@
 	font-family: 'Roboto', sans-serif;
 }
 
-footer {
-	padding: 30px;
-}
-
-.error {
-    color: red;
-    display: none;
-    font-family: 'Nunito';
-}
-
 /*menu*/
 nav img {
 	width: 35px;
@@ -22,23 +12,6 @@ nav img {
 
 nav {
 	padding: 30px;
-	color: white;
-}
-
-.register {
-	background-color: white;
-   	color: darkviolet;
-   	padding: 8px;
-   	padding-left: 20px;
-	padding-right: 20px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-}
-
-.register:hover {
-	background-color: indigo;
-	border-radius: 10px;
 	color: white;
 }
 
@@ -60,105 +33,25 @@ nav {
 	color:white;
 }
 
-/*modal*/
-.form-control {
-	font-family: 'Nunito';
-}
-
-.form-select {
-	font-family: 'Nunito';
-}
-
-/*consultas*/
-.queries {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-	margin-top: 2vh;
-	margin-bottom: 2.5vh;
-}
-
-.subtitle {
-	color: gray; 
-	margin: 0;
-	margin-right: 20px;
-	text-decoration: none;
-}
-
-#save-pdf:hover {
+/*botão branco*/
+.register {
 	background-color: white;
-	color: darkviolet;
-}
-
-#pdf-content p {
-	margin: 0;
-}
-
-.contact-pdf p {
-	margin: 0;
-}
-
-/*cards*/
-ol {
-	list-style-type: none;
-}
-
-ol ul {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-	padding: 8px;
-	margin-left: 50px;
-	width: 100%;
-}
-
-/*cards*/
-ol li {
-	padding-left: 20px;
+   	color: darkviolet;
+   	padding: 8px;
+   	padding-left: 20px;
 	padding-right: 20px;
-	margin-top: 1.5vh;
-	border-radius: 5px;
-	background-color: white;
-	outline: none !important;
-    border: 1px solid lavender;
-    background-color: white;
+    border-radius: 10px;
+    border: none;
+    outline: none;
 }
 
-ol li p {
-	margin: 0;
+.register:hover {
+	background-color: indigo;
+	border-radius: 10px;
+	color: white;
 }
 
-span {
-	font-family: 'Nunito';
-}
-
-.action {
-	background-color: ghostwhite;
-	border-radius: 50px;
-	width: 40px;
-	height: 40px;
-	border: none;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 5px;
-}
-
-.action:hover {
-	background-color: lavender;
-}
-
-.action img {
-	max-height: 18px;
-	margin: 0;
-}
-
-.hidden {
-	display: none;
-}
-
+/*barra de pesquisa*/
 .search-content {
 	background-color: white;
 	margin-bottom: 10px;
@@ -183,6 +76,132 @@ span {
 	padding: 0;
 }
 
+.subtitle {
+	color: gray; 
+	margin: 0;
+	margin-right: 20px;
+	text-decoration: none;
+}
+
+/*modal*/
+.form-control {
+	font-family: 'Nunito';
+}
+
+.form-select {
+	font-family: 'Nunito';
+}
+
+/*setor de filtros*/
+.queries {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 2vh;
+	margin-bottom: 2.5vh;
+}
+
+.removeFilter:hover {
+	color:  indigo;
+}
+
+/*pdf*/
+#save-pdf:hover {
+	background-color: white;
+	color: darkviolet;
+}
+
+#pdf-content p {
+	margin: 0;
+}
+
+.contact-pdf p {
+	margin: 0;
+}
+
+/*cards*/
 #cards {
 	padding: 0;
+}
+
+ol {
+	list-style-type: none;
+}
+
+ol ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px;
+	margin-left: 50px;
+	width: 100%;
+}
+
+ol li {
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 1.5vh;
+	border-radius: 5px;
+	background-color: white;
+	outline: none !important;
+    border: 1px solid lavender;
+    background-color: white;
+}
+
+ol li p {
+	margin: 0;
+}
+
+span {
+	font-family: 'Nunito';
+}
+
+/*cards button*/
+.action {
+	background-color: ghostwhite;
+	border-radius: 50px;
+	width: 40px;
+	height: 40px;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 5px;
+}
+
+.action:hover {
+	background-color: lavender;
+}
+
+.action img {
+	max-height: 18px;
+	margin: 0;
+}
+
+/*outras configurações*/
+.error {
+    color: red;
+    display: none;
+    font-family: 'Nunito';
+}
+
+.hidden {
+	display: none;
+}
+
+.dropdown-menu a {
+	font-family: Nunito;
+}
+
+footer {
+	padding: 30px;
+}
+
+/*agenda*/
+.time {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }

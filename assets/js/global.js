@@ -1,4 +1,5 @@
 $("#guardian-phone").mask('(00) 00000-0000');
+$("#rm").mask('00000');
 
 const inputSearch = document.querySelector(".search-box input");
 const todosContainer = document.getElementById("cards");
@@ -52,6 +53,7 @@ firebase.auth().onAuthStateChanged(user => {
 	}
 })
 
+//botões dos cards
 function action() {
 	const div = document.createElement('div');
 			div.setAttribute('class', 'queries');
@@ -138,5 +140,7 @@ const form = {
 	checkAllContacts: () => document.getElementById('check-all-contacts'),
 	checkAllMeetings: () => document.getElementById('check-all-meetings'),
 	pdfContent: () => document.getElementById('pdf-content'),
-	savePdf: () => document.getElementById('save-pdf')
+	savePdf: () => document.getElementById('save-pdf'),
+	orderedList: () => document.getElementById('cards'),
+	li: () => document.createElement('li')
 }

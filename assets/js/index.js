@@ -30,7 +30,6 @@ function login() {
         firebase.auth().signInWithEmailAndPassword(
         form.email().value, form.password().value
             ).then(response => {
-                //showLoading();
                 window.location.href = "views/home.html"; //se o usuário for encontrado, abrir o home
             }).catch(error => {
                 alert(getErrorMessage(error));
