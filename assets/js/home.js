@@ -60,9 +60,7 @@ function logout() {
 function findRegisters(user) {
 	//showLoading();
 	const doc = new jsPDF()
-	$(form.pdfContent()).append("<div class='d-flex justify-content-md-between'><h1 style='color: darkviolet;'>AcoDi</h1>" +
-			"<text>Data de emissão: 10/11/2022</text></div><br>" +
-			"<br>");
+
 	contactService.findByUser(user)
 		.then(contacts => {
 			//hideLoading();
@@ -80,9 +78,12 @@ function findRegisters(user) {
 }
 
 var uid
+var qtdRegister = 0
+var html = ""
 
 function addContactsToScreen(contacts) { 
-	$(form.pdfContent()).append("<h5 style='color: gray; margin: 0;'>Contatos</h5>");
+	var today = new Date();
+
 	contacts.forEach(register => {
 		const currentUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
 		const urlParams = new URLSearchParams(window.location.search);
@@ -90,20 +91,24 @@ function addContactsToScreen(contacts) {
 		if (currentUrl == window.location.href) { //filtra os contatos
 			createCard(register);
 		} else {
+			const removeFilter = document.getElementById('filter').innerHTML = "Remover filtro";
 			if (urlParams.get('course') == register.course) { //filtra os contatos do curso selecionado
-				const removeFilter = document.getElementById('filter').innerHTML = "Remover filtro";
 				createCard(register);
 			}
 			if (urlParams.get('period')) {
 				filterPeriod(register, urlParams.get('period'));
-				const removeFilter = document.getElementById('filter').innerHTML = "Remover filtro";
 			} 
 		}
 	});
 
+	$(form.pdfContent()).append("<div class='d-flex'><h1 style='color: darkviolet;'>AcoDi</h1>" +
+			"<text>Data de emissão: " + today.toLocaleDateString("pt-BR") + "</text>" +
+			"<text>Total de registros: " + qtdRegister + "</text></div>" +
+			"<br><br><br><br><h5 style='color: gray; margin: 0;'>Contatos</h5>" + html);
 }
 
 function createCard(register) {
+	qtdRegister += 1;
 	const orderedList = document.getElementById('cards');
 	const li = createContactListItem(register);
 	li.setAttribute('class', 'd-flex align-items-center');
@@ -123,11 +128,16 @@ function createCard(register) {
 }
 
 function createContactListItem(register) {
-	$(form.pdfContent()).append("<text><b>" + register.studentName + "</b>" +
-		"<br>Curso: " + register.grade + " " + register.course +
-		"<br>Data de registro: " + register.date + 
-		"<p>");
-
+	html += "<br><div class='contact-pdf'><b>" + register.studentName + "</b>" +
+		"<p>Data: " + register.date.split('-').reverse().join('/') + 
+		"<p>RM: " + register.rm +
+		"<p>Curso: " + register.grade + " " + register.course +
+		"<p>Responsável: " + register.guardianStudent +
+		"<p>Celular do responsável: " + register.guardianPhone +
+		"<p>Coordenador pedagógico: " + register.pCoordinator + 
+		"<p>Coordenador de área: " + register.aCoordinator +
+		"<p>Orientador educacional: " + register.educationalAdviser +
+		"<p>Assunto: " + register.subject + "</div><br>";
 	const li = document.createElement('li');
 	li.id = register.uid;
 

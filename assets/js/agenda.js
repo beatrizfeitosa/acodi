@@ -9,9 +9,7 @@ function logout() {
 function findRegisters(user) {
 	//showLoading();
 	const doc = new jsPDF()
-	$(form.pdfContent()).append("<div class='d-flex justify-content-md-between'><h1 style='color: darkviolet;'>AcoDi</h1>" +
-			"<text>Data de emissão: 10/11/2022</text></div><br>" +
-			"<br>");
+
 	meetingService.findByUser(user)
 		.then(meetings => {
 			//hideLoading();
@@ -29,12 +27,15 @@ function findRegisters(user) {
 }
 
 var uid
+var qtdRegister = 0
+var html = ""
 
 function addMeetingsToScreen(meetings) { 
-	$(form.pdfContent()).append("<h5 style='color: gray; margin: 0;'>Reuniões</h5>");
+	var today = new Date();
 
 	const orderedList = document.getElementById('cards');
 	meetings.forEach(register => {
+		qtdRegister += 1;
 		const li = createMeetingListItem(register);
 		li.setAttribute('class', 'd-flex align-items-center');
 		//criação dos cards
@@ -56,14 +57,22 @@ function addMeetingsToScreen(meetings) {
 		li.appendChild(ul);
 		orderedList.appendChild(li);
 	});
+
+	$(form.pdfContent()).append("<div class='d-flex'><h1 style='color: darkviolet;'>AcoDi</h1>" +
+			"<text>Data de emissão: " + today.toLocaleDateString("pt-BR") + "</text>" +
+			"<text>Total de registros: " + qtdRegister + "</text></div>" +
+			"<br><br><br><br><h5 style='color: gray; margin: 0;'>Reuniões</h5>" + html);
 }
 
 function createMeetingListItem(register) {
-	$(form.pdfContent()).append("<text><b>" + register.guardianStudent + "</b>" +
-		"<br>Aluno: " + register.studentName +
-		"<br>Data: " + register.date +
-		"<br>Hora: " + register.time +
-		"<p>");
+	html += "<br><div class='contact-pdf'><b>" + register.guardianStudent + "</b>" +
+		"<p>Data: " + register.date.split('-').reverse().join('/') + 
+		"<p>Hora: " + register.time +
+		"<p>Aluno: " + register.studentName +
+		"<p>Curso: " + register.grade + " " + register.course +
+		"<p>Celular do responsável: " + register.guardianPhone +
+		"<p>Assunto: " + register.subject + "</div><br>";
+
 	const li = document.createElement('li');
 	li.id = register.uid;
 	confirmRemoveRegister(register);
@@ -116,22 +125,26 @@ function removeRegister(register) {
 }
 
 function updateMeeting() {
-	const register = createMeeting();
-	//showLoading();
-    meetingService.update(register)
-    .then(() => {
-        //hideLoading();
-        window.location.href = "agenda.html";
-    })
-   .catch(() => {
-        //hideLoading();
-        alert('Erro ao atualizar reunião');
-    });
+	if (form.studentName().value == "" || form.date().value == "" || form.time().value == "" || form.guardianStudent().value == "") {
+        alert("Preencha os campos obrigatórios");
+    } else {
+		const register = createMeeting();
+		//showLoading();
+		meetingService.update(register)
+		.then(() => {
+			//hideLoading();
+			window.location.href = "agenda.html";
+		})
+		.catch(() => {
+			//hideLoading();
+			alert('Erro ao atualizar reunião');
+		});
+	}
 }
 
 function saveMeeting() {
 	//showLoading();
-	if (form.studentName().value == "" || form.date().value == "") {
+	if (form.studentName().value == "" || form.date().value == "" || form.time().value == "" || form.guardianStudent().value == "") {
         alert("Preencha os campos obrigatórios");
     } else {
     	const register = createMeeting();

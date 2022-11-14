@@ -16,7 +16,8 @@ footer {
 
 /*menu*/
 nav img {
-	width: 60px;
+	width: 35px;
+	margin-left: 10px;
 }
 
 nav {
@@ -88,6 +89,14 @@ nav {
 #save-pdf:hover {
 	background-color: white;
 	color: darkviolet;
+}
+
+#pdf-content p {
+	margin: 0;
+}
+
+.contact-pdf p {
+	margin: 0;
 }
 
 /*cards*/
