@@ -67,7 +67,7 @@ function validatePasswordMatch() {
 }
 
 function login() {
-	window.location.href = "index.html";
+	window.location.href = "../index.html";
 }
 
 const form = {
