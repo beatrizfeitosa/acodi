@@ -130,9 +130,6 @@ function createContactListItem(register) {
 		"<p>Curso: " + register.grade + " " + register.course +
 		"<p>Responsável: " + register.guardianStudent +
 		"<p>Celular do responsável: " + register.guardianPhone +
-		"<p>Coordenador pedagógico: " + register.pCoordinator + 
-		"<p>Coordenador de área: " + register.aCoordinator +
-		"<p>Orientador educacional: " + register.educationalAdviser +
 		"<p>Assunto: " + register.subject + "</div><br>";
 	const li = document.createElement('li');
 	li.id = register.uid;
@@ -148,9 +145,6 @@ function createContactListItem(register) {
 		form.guardianStudentView().innerHTML = " " + register.guardianStudent;
 		form.guardianPhoneView().innerHTML = " " + register.guardianPhone;
 		form.gradeView().innerHTML = " " + register.grade + " " + register.course;
-		form.pCoordinatorView().innerHTML = " " + register.pCoordinator;
-		form.aCoordinatorView().innerHTML = " " + register.aCoordinator;
-		form.educationalAdviserView().innerHTML = " " + register.educationalAdviser;
 		form.subjectView().innerHTML = " " + register.subject;
 		form.whatsapp().style.display = register.guardianPhone ? "block" : "none";
 		createUpdateModal(register);
@@ -172,9 +166,6 @@ function createUpdateModal(register) {
 	form.guardianPhone().value = register.guardianPhone;
 	form.grade().value = register.grade;
 	form.course().value = register.course;
-	form.pCoordinator().value = register.pCoordinator;
-	form.aCoordinator().value = register.aCoordinator;
-	form.educationalAdviser().value = register.educationalAdviser;
 	form.subject().value = register.subject;
 		
 	//salvar alterações do contato
@@ -227,9 +218,6 @@ function registerModal() {
 	form.guardianPhone().value = "";
 	form.grade().value = "";
 	form.course().value = "";
-	form.pCoordinator().value = "";
-	form.aCoordinator().value = "";
-	form.educationalAdviser().value = "";
 	form.subject().value = "";
 
 	saveButton.addEventListener('click', () => {
@@ -246,9 +234,6 @@ function createContact() {
     	guardianPhone: form.guardianPhone().value,
     	grade: form.grade().value,
     	course: form.course().value,
-    	pCoordinator: form.pCoordinator().value,
-    	aCoordinator: form.aCoordinator().value,
-    	educationalAdviser: form.educationalAdviser().value,
    		subject: form.subject().value,
    		user: {
    			uid: firebase.auth().currentUser.uid
